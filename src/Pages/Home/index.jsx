@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Card from "../../Components/Card";
+import { API_URL } from '../../api';
 
 function Home() {
   const [items, setItems] = useState(null);
@@ -7,9 +8,10 @@ function Home() {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const data = await fetch('https://api.escuelajs.co/api/v1/products')
+        const data = await fetch(API_URL)
         const jsonData = await data.json()
-        setItems(jsonData)
+        console.log(jsonData.products);
+        setItems(jsonData.products)
       } 
       catch (error) {
         console.log(error)
