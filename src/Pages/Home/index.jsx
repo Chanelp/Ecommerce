@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Card from "../../Components/Card";
-import { API_URL } from '../../api';
+import { apiUrlPlatzi } from '../../api';
 
 function Home() {
   const [items, setItems] = useState(null);
@@ -8,10 +8,10 @@ function Home() {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const data = await fetch(API_URL)
+        const data = await fetch(apiUrlPlatzi)
         const jsonData = await data.json()
-        console.log(jsonData.products);
-        setItems(jsonData.products)
+        console.log(jsonData);
+        setItems(jsonData)
       } 
       catch (error) {
         console.log(error)
