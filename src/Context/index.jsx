@@ -6,12 +6,14 @@ export const ShoppingCartProvider = ({ children }) => {
 
     const [count, setCount] = useState(0);
 
-    const increment = () => {
+    const onIncrement = () => {
         setCount(count + 1);
     }
 
+    const data = { count, setCount, onIncrement }
+
     return(
-        <ShoppingCartContext.Provider value={{ count, setCount, increment }}>
+        <ShoppingCartContext.Provider value={ data }>
             { children }
         </ShoppingCartContext.Provider>
     );
