@@ -2,11 +2,11 @@ import { NavLink } from "react-router-dom";
 import { useShoppingCartProvider } from '../../Context';
 
 const Navbar = () => {
-  const activeStyle = "underline underline-offset-4";
+  const activeStyle = "underline underline-offset-8 decoration-red-800 text-red-800 font-bold";
   const { count } = useShoppingCartProvider();
 
   return (
-    <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm">
+    <nav className="flex justify-between items-center fixed z-10 top-0 w-full bg-white py-5 px-8 text-base">
       <ul className="flex items-center gap-3">
         <li className="font-semibold text-lg">
           <NavLink to="/">Shopi</NavLink>
@@ -86,7 +86,7 @@ const Navbar = () => {
             Sign In
           </NavLink>
         </li>
-        <li>🛒 {count} </li>
+        <li className="bg-red-800/90 py-2 px-3 rounded-full text-white">🛒 {count} </li>
       </ul>
     </nav>
   );
