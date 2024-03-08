@@ -3,10 +3,15 @@ import { useShoppingCartProvider } from '../../Context';
 
 const Card = ({ data }) => {
 
-    const { onIncrement, openProductDetail } = useShoppingCartProvider();
+    const { onIncrement, openProductDetail, setProductToShow } = useShoppingCartProvider();
+
+    const showProduct = (productDetail) => {
+        openProductDetail();
+        setProductToShow(productDetail);
+    }
 
     return(
-        <article className='w-56 h-60 bg-white cursor-pointer rounded-lg' onClick={openProductDetail}>
+        <article className='w-56 h-60 bg-white cursor-pointer rounded-lg' onClick={() => showProduct(data)}>
             <figure className='relative w-full h-4/5'>
                 <figcaption className='absolute bottom-0 left-0 bg-white/60 m-2 px-3 py-0.5 text-xs text-black font-semibold rounded-lg hover:bg-white'> {data?.category?.name} </figcaption>
                 <img className='w-full h-full object-cover rounded-2xl' src={data?.images[0]} alt={data?.description} loading='lazy' />

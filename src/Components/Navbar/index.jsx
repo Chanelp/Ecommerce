@@ -87,7 +87,7 @@ const Navbar = () => {
             Sign In
           </NavLink>
         </li>
-        <li className="flex items-center bg-red-800/90 py-2 px-3 rounded-full text-white">
+        <li className="flex items-center bg-red-800/90 py-1.5 px-3 rounded-full text-white">
           <div className='w-5 h-5 mr-2'><ShoppingBagIcon></ShoppingBagIcon></div>
           <div>{ count }</div>
         </li>
