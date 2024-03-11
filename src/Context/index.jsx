@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const ShoppingCartContext = createContext();
 
@@ -20,12 +20,19 @@ export const ShoppingCartProvider = ({ children }) => {
         images: [],
     });
 
+    // Shopping Cart - Add products to cart
+    const [cartProducts, setCartProducts] = useState([]);
+
+    useEffect(() => {
+        console.log("Products has been updated: ", cartProducts);
+    }, [cartProducts])
+
     const onIncrement = (e) => {
         e.stopPropagation();
         setCount(count + 1);
     }
 
-    const data = { count, setCount, onIncrement, isProductDetailOpen, openProductDetail, closeProductDetail, productToShow, setProductToShow }
+    const data = { count, setCount, onIncrement, isProductDetailOpen, openProductDetail, closeProductDetail, productToShow, setProductToShow, cartProducts, setCartProducts }
 
     return(
         <ShoppingCartContext.Provider value={ data }>

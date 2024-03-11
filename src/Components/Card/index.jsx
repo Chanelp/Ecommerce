@@ -3,11 +3,16 @@ import { useShoppingCartProvider } from '../../Context';
 
 const Card = ({ data }) => {
 
-    const { onIncrement, openProductDetail, setProductToShow } = useShoppingCartProvider();
+    const { onIncrement, openProductDetail, setProductToShow, cartProducts, setCartProducts } = useShoppingCartProvider();
 
     const showProduct = (productDetail) => {
         openProductDetail();
         setProductToShow(productDetail);
+    }
+
+    const addProductToCart = (productData) => {
+        onIncrement(event);
+        setCartProducts([...cartProducts, productData]);
     }
 
     return(
@@ -16,7 +21,7 @@ const Card = ({ data }) => {
                 <figcaption className='absolute bottom-0 left-0 bg-white/60 m-2 px-3 py-0.5 text-xs text-black font-semibold rounded-lg hover:bg-white'> {data?.category?.name} </figcaption>
                 <img className='w-full h-full object-cover rounded-2xl' src={data?.images[0]} alt={data?.description} loading='lazy' />
                 <button className='flex justify-center w-6 h-6 items-center absolute top-0 right-0 bg-white m-2 rounded-full font-bold hover:bg-red-800 hover:text-white'
-                    onClick={onIncrement}
+                    onClick={() => addProductToCart(data)}
                 >
                     <PlusIcon className='w-4 h-4'></PlusIcon>
                 </button>
