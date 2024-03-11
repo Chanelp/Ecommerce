@@ -16,7 +16,12 @@ const CheckoutSideMenu = () => {
             <div className='flex flex-col items-center px-6'>
                 {
                     cartProducts.map(product => (
-                        <OrderCard key={product.id} title={product.title} price={product.price} imgUrl={product.images} />
+                        <OrderCard 
+                            key={product.id} 
+                            id={product.id}
+                            title={product.title} 
+                            price={product.price} 
+                            imgUrl={product.images} />
                     ))
                 }
             </div>

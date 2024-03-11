@@ -4,7 +4,7 @@ import { useShoppingCartProvider } from '../../Context';
 
 const Navbar = () => {
   const activeStyle = "underline underline-offset-8 decoration-white font-bold";
-  const { count } = useShoppingCartProvider();
+  const { cartProducts } = useShoppingCartProvider();
 
   return (
     <nav className="flex justify-between items-center fixed z-10 top-0 w-full bg-red-800 text-white py-5 px-8 text-base">
@@ -89,7 +89,7 @@ const Navbar = () => {
         </li>
         <li className="flex items-center bg-red-800/90 py-1.5 px-3 rounded-full text-white">
           <div className='w-5 h-5 mr-2'><ShoppingBagIcon></ShoppingBagIcon></div>
-          <div>{ count }</div>
+          <div>{ cartProducts.length }</div>
         </li>
       </ul>
     </nav>
