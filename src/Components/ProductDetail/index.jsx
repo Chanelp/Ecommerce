@@ -5,7 +5,7 @@ const ProductDetail = () => {
     const { isProductDetailOpen, closeProductDetail, productToShow } = useShoppingCartProvider();
     console.log("PRODUCTO A MOSTRAR: ", productToShow);
     return(
-        <aside className={`${ isProductDetailOpen ? 'flex' : 'hidden' } flex-col fixed right-0 border bg-white border-red-700 rounded-lg w-[360px] h-[calc(100vh-80px)]`}>
+        <aside className={`${ isProductDetailOpen ? 'flex' : 'hidden' } flex-col fixed right-0 border bg-white border-red-700 rounded-lg w-[360px] h-[calc(100vh-80px)] top-20`}>
             <div className="flex justify-between items-center p-6">
                 <h2 className="font-medium text-xl">Detail</h2>
                 <button className='w-6 h-6 text-red-700' onClick={ closeProductDetail }>

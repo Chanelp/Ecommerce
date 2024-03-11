@@ -1,4 +1,5 @@
 import { useRoutes, BrowserRouter } from 'react-router-dom'
+import { ShoppingCartProvider } from '../../Context';
 import Home from '../Home'
 import MyAccount from '../MyAccount'
 import MyOrder from '../MyOrder';
@@ -8,7 +9,7 @@ import SignIn from '../SignIn'
 import './App.css'
 import NavBar from '../../Components/Navbar';
 import Layout from '../../Components/Layout';
-import { ShoppingCartProvider } from '../../Context';
+import CheckoutSideMenu from '../../Components/CheckoutSideMenu'
 
 const AppRoutes = () => {
   let routes = useRoutes([
@@ -31,6 +32,7 @@ const App = () => {
       <Layout>
         <AppRoutes />
       </Layout>
+      <CheckoutSideMenu />
     </BrowserRouter>
     </ShoppingCartProvider>
   )

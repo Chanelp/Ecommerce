@@ -7,6 +7,11 @@ export const ShoppingCartProvider = ({ children }) => {
     // Shopping Cart Increment Count
     const [count, setCount] = useState(0);
     
+    const onIncrement = (e) => {
+        e.stopPropagation();
+        setCount(count + 1);
+    }
+    
     // Product Detail Open/Close
     const [isProductDetailOpen, setIsOpenDetailOpen] = useState(false);
     const openProductDetail = () => setIsOpenDetailOpen(true);
@@ -25,14 +30,15 @@ export const ShoppingCartProvider = ({ children }) => {
 
     useEffect(() => {
         console.log("Products has been updated: ", cartProducts);
-    }, [cartProducts])
+    }, [cartProducts]);
 
-    const onIncrement = (e) => {
-        e.stopPropagation();
-        setCount(count + 1);
-    }
+    // Checkout Side Menu Open/Close
+    const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false);
+    const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true);
+    const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false);
 
-    const data = { count, setCount, onIncrement, isProductDetailOpen, openProductDetail, closeProductDetail, productToShow, setProductToShow, cartProducts, setCartProducts }
+
+    const data = { count, setCount, onIncrement, isProductDetailOpen, openProductDetail, closeProductDetail, productToShow, setProductToShow, cartProducts, setCartProducts, isCheckoutSideMenuOpen, openCheckoutSideMenu, closeCheckoutSideMenu }
 
     return(
         <ShoppingCartContext.Provider value={ data }>
