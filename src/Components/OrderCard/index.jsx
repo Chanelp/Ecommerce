@@ -3,13 +3,13 @@ import './style.css'
 
 const OrderCard = props => {
 
-    const { title, price } = props;
+    const { title, price, imgUrl } = props;
 
     return(
         <div className="order flex justify-between items-center w-full mb-3 rounded-lg p-2">
             <div className="flex items-center gap-2">
                 <figure className='w-20 h-20'>
-                    <img className='w-full h-full object-cover rounded-lg' src="https://i.imgur.com/cHddUCu.jpeg" alt={title} />
+                    <img className='w-full h-full object-cover rounded-lg' src={imgUrl} alt={title} />
                 </figure>
                 <p className='font-light text-sm'> {title} </p>
             </div>
