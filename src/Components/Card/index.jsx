@@ -4,9 +4,10 @@ import { useShoppingCartProvider } from '../../Context';
 
 const Card = ({ data }) => {
 
-    const { onIncrement, openProductDetail, closeProductDetail, setProductToShow, cartProducts, setCartProducts, openCheckoutSideMenu } = useShoppingCartProvider();
+    const { onIncrement, openProductDetail, closeProductDetail, setProductToShow, cartProducts, setCartProducts, openCheckoutSideMenu, closeCheckoutSideMenu } = useShoppingCartProvider();
 
     const showProduct = (productDetail) => {
+        closeCheckoutSideMenu();
         openProductDetail();
         setProductToShow(productDetail);
     }

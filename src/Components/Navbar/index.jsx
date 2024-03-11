@@ -3,13 +3,13 @@ import { NavLink } from "react-router-dom";
 import { useShoppingCartProvider } from '../../Context';
 
 const Navbar = () => {
-  const activeStyle = "underline underline-offset-8 decoration-red-800 text-red-800 font-bold";
+  const activeStyle = "underline underline-offset-8 decoration-white font-bold";
   const { count } = useShoppingCartProvider();
 
   return (
-    <nav className="flex justify-between items-center fixed z-10 top-0 w-full bg-white py-5 px-8 text-base">
+    <nav className="flex justify-between items-center fixed z-10 top-0 w-full bg-red-800 text-white py-5 px-8 text-base">
       <ul className="flex items-center gap-3">
-        <li className="font-semibold text-lg">
+        <li className="font-bold text-lg mr-4">
           <NavLink to="/">Shopi</NavLink>
         </li>
         <li>
@@ -62,7 +62,7 @@ const Navbar = () => {
         </li>
       </ul>
       <ul className="flex items-center gap-3">
-        <li className="text-black/60">chanel@gmail.com</li>
+        <li className="text-white/50">chanel@gmail.com</li>
         <li>
           <NavLink
             to="/my-orders"
