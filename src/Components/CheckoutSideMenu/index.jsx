@@ -1,6 +1,7 @@
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import { useShoppingCartProvider } from '../../Context';
 import OrderCard from '../OrderCard';
+import { totalPrice } from '../../utils';
 
 const CheckoutSideMenu = () => {
     const { isCheckoutSideMenuOpen, closeCheckoutSideMenu, cartProducts } = useShoppingCartProvider();
@@ -24,6 +25,16 @@ const CheckoutSideMenu = () => {
                             imgUrl={product.images} />
                     ))
                 }
+            </div>
+            <div className='px-6'>
+                <p className='flex justify-between items-center'>
+                    <span className='text-base font-light'>
+                        Total:
+                    </span>
+                    <span className='font-medium text-lg'>
+                        ${ totalPrice(cartProducts) }
+                    </span>
+                </p>
             </div>
         </aside>
     );
