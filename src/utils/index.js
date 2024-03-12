@@ -1,7 +1,7 @@
 /**
  * This function calculates total price of a new order
  * @param {Array} products cartProducts: Array of Objects
- * @returns {number} sum
+ * @returns {number} Total price
  */
 
 export const totalPrice = (products) => {
