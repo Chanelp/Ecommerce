@@ -4,17 +4,29 @@ import OrderCard from '../OrderCard';
 import { totalPrice } from '../../utils';
 
 const CheckoutSideMenu = () => {
-    const { isCheckoutSideMenuOpen, closeCheckoutSideMenu, cartProducts } = useShoppingCartProvider();
+    const { isCheckoutSideMenuOpen, closeCheckoutSideMenu, cartProducts, setCartProducts, setOrder } = useShoppingCartProvider();
+
+    const handleCheckout = () => {
+        const orderToAdd = {
+            date: '12.03.2023',
+            products: cartProducts,
+            quantityProducts: cartProducts.length,
+            totalPrice: totalPrice(cartProducts)
+        };
+
+        setOrder(orderToAdd);
+        setCartProducts([]);
+    }
 
     return(
-        <aside className={`${ isCheckoutSideMenuOpen ? 'flex' : 'hidden' } flex-col fixed right-0 w-[500px] h-[calc(100vh-10px)] top-20 border bg-white border-red-700 rounded-lg overflow-y-scroll`}>
+        <aside className={`${ isCheckoutSideMenuOpen ? 'flex' : 'hidden' } flex-col fixed right-0 w-[500px] h-[calc(100vh-90px)] top-20 border bg-white border-red-700 rounded-lg`}>
             <div className="flex justify-between items-center p-6">
                 <h2 className="font-medium text-xl">My order</h2>
                 <button className='w-6 h-6 text-red-700' onClick={ closeCheckoutSideMenu }>
                     <XMarkIcon></XMarkIcon>
                 </button>
             </div>
-            <div className='flex flex-col items-center px-6'>
+            <div className='px-6 overflow-y-scroll flex-1'>
                 {
                     cartProducts.map(product => (
                         <OrderCard 
@@ -27,14 +39,13 @@ const CheckoutSideMenu = () => {
                 }
             </div>
             <div className='px-6'>
-                <p className='flex justify-between items-center'>
-                    <span className='text-base font-light'>
-                        Total:
-                    </span>
-                    <span className='font-medium text-lg'>
-                        ${ totalPrice(cartProducts) }
-                    </span>
+                <p className='flex justify-between items-center mb-3'>
+                    <span className='text-base font-light'>Total:</span>
+                    <span className='font-medium text-lg'>${ totalPrice(cartProducts) }</span>
                 </p>
+                <button onClick={() => handleCheckout()} className='w-full mb-6 p-3 bg-black text-white rounded-lg'>
+                    Checkout
+                </button>
             </div>
         </aside>
     );
