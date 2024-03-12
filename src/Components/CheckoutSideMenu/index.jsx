@@ -4,7 +4,7 @@ import OrderCard from '../OrderCard';
 import { totalPrice } from '../../utils';
 
 const CheckoutSideMenu = () => {
-    const { isCheckoutSideMenuOpen, closeCheckoutSideMenu, cartProducts, setCartProducts, setOrder } = useShoppingCartProvider();
+    const { isCheckoutSideMenuOpen, closeCheckoutSideMenu, cartProducts, setCartProducts, order, setOrder } = useShoppingCartProvider();
 
     const handleCheckout = () => {
         const orderToAdd = {
@@ -14,7 +14,7 @@ const CheckoutSideMenu = () => {
             totalPrice: totalPrice(cartProducts)
         };
 
-        setOrder(orderToAdd);
+        setOrder([...order, orderToAdd]);
         setCartProducts([]);
     }
 
