@@ -6,9 +6,14 @@ import { totalPrice } from '../../utils';
 const CheckoutSideMenu = () => {
     const { isCheckoutSideMenuOpen, closeCheckoutSideMenu, cartProducts, setCartProducts, order, setOrder } = useShoppingCartProvider();
 
+    const handleDelete = (id) => {
+        const filteredProducts = cartProducts.filter(product => product.id != id);
+        setCartProducts(filteredProducts);
+    }
+    
     const handleCheckout = () => {
         const orderToAdd = {
-            date: '12.03.2023',
+            date: '13.03.2023',
             products: cartProducts,
             quantityProducts: cartProducts.length,
             totalPrice: totalPrice(cartProducts)
@@ -34,7 +39,8 @@ const CheckoutSideMenu = () => {
                             id={product.id}
                             title={product.title} 
                             price={product.price} 
-                            imgUrl={product.images} />
+                            imgUrl={product.images} 
+                            handleDelete={handleDelete} />
                     ))
                 }
             </div>

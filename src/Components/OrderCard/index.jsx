@@ -1,15 +1,13 @@
 import { TrashIcon } from '@heroicons/react/24/solid';
-import './style.css'
-import { useShoppingCartProvider } from '../../Context';
+import './style.css';
 
 const OrderCard = props => {
 
-    const { id, title, price, imgUrl} = props;
-    const { cartProducts, setCartProducts } = useShoppingCartProvider();
+    const { id, title, price, imgUrl, handleDelete} = props;
 
-    const handleDelete = (id) => {
-        const filteredProducts = cartProducts.filter(product => product.id != id);
-        setCartProducts(filteredProducts);
+    let renderTrashIcon;
+    if(handleDelete){
+        renderTrashIcon = <TrashIcon></TrashIcon>;
     }
 
     return(
@@ -23,7 +21,7 @@ const OrderCard = props => {
             <div className="flex items-center gap-2">
                 <p className='font-medium text-base'>${price}</p>
                 <button onClick={() => handleDelete(id)} className='w-6 h-6 text-gray-300 hover:text-red-600'>
-                    <TrashIcon></TrashIcon>
+                    { renderTrashIcon }
                 </button>
             </div>
         </div>
