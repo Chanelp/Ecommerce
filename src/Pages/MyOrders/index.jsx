@@ -12,7 +12,8 @@ const MyOrders = () => {
                 <Link key={index} to={`/my-orders/${order.id}`}>
                     <OrdersCard
                       totalPrice={order.totalPrice}
-                      quantityProducts={order.quantityProducts} />
+                      quantityProducts={order.quantityProducts} 
+                      date={order.date}/>
                 </Link>
             }) }
         </>
