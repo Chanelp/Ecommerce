@@ -1,11 +1,22 @@
+import { Link } from 'react-router-dom';
+import { useShoppingCartProvider } from '../../Context';
+import OrdersCard from '../../Components/OrdersCard';
 
-function MyOrders() {
-    return (
-      <>
-        <p>My Orders</p>
-      </>
-    )
-  }
-  
-  export default MyOrders;
-  
+const MyOrders = () => {
+
+    const { order } = useShoppingCartProvider();
+
+    return(
+        <>
+            { order.map((order, index) => {
+                <Link key={index} to={`/my-orders/${order.id}`}>
+                    <OrdersCard
+                      totalPrice={order.totalPrice}
+                      quantityProducts={order.quantityProducts} />
+                </Link>
+            }) }
+        </>
+    );
+}
+
+export default MyOrders;
