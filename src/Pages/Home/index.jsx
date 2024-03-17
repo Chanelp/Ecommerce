@@ -4,7 +4,23 @@ import ProductDetail from '../../Components/ProductDetail';
 import { useShoppingCartProvider } from '../../Context';
 
 function Home() {
-  const { items, setSearchByTitle } = useShoppingCartProvider();
+  const { items, searchByTitle, setSearchByTitle, filteredItems } = useShoppingCartProvider();
+
+  const renderView = () => {
+    const itemsToRender = searchByTitle?.length > 0 ? filteredItems : items;
+
+    if(itemsToRender?.length > 0){
+      return itemsToRender.map(item => (
+        <Card key={item.id} data={item} />
+        ));
+    } else {
+      return(
+        <div className='text-xl text-gray-400'>
+          No matches found 🪁
+        </div>
+      )
+    }
+  }
 
     return (
       <>
@@ -20,11 +36,7 @@ function Home() {
         <span className='absolute right-3 top-2 cursor-pointer'><MagnifyingGlassIcon className='w-5 h-5 text-red-700'/></span>
       </div>
         <section className='grid gap-4 grid-cols-4 w-full max-w-screen-lg'>
-          {
-            items?.map(item => (
-              <Card key={item.id} data={item} />
-              ))
-          }
+          { renderView()}
         </section>
         <ProductDetail />
       </>

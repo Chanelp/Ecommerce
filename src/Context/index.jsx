@@ -1,13 +1,14 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { apiUrlPlatzi } from '../api';
+/* eslint-disable react-refresh/only-export-components */
+import { createContext, useContext, useEffect, useState } from "react"
+import { apiUrlPlatzi } from '../api'
 
-const ShoppingCartContext = createContext();
+const ShoppingCartContext = createContext()
 
 export const ShoppingCartProvider = ({ children }) => {
     // Product Detail Open/Close
-    const [isProductDetailOpen, setIsOpenDetailOpen] = useState(false);
-    const openProductDetail = () => setIsOpenDetailOpen(true);
-    const closeProductDetail = () => setIsOpenDetailOpen(false);
+    const [isProductDetailOpen, setIsOpenDetailOpen] = useState(false)
+    const openProductDetail = () => setIsOpenDetailOpen(true)
+    const closeProductDetail = () => setIsOpenDetailOpen(false)
 
     // Product to Show
     const [productToShow, setProductToShow] = useState({
@@ -15,32 +16,31 @@ export const ShoppingCartProvider = ({ children }) => {
         price: "",
         description: "",
         images: [],
-    });
+    })
 
     // Shopping Cart - Add products to cart
-    const [cartProducts, setCartProducts] = useState([]);
-
-    useEffect(() => {
-        console.log("Products has been updated: ", cartProducts);
-    }, [cartProducts]);
+    const [cartProducts, setCartProducts] = useState([])
 
     // Checkout Side Menu Open/Close
-    const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false);
-    const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true);
-    const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false);
+    const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false)
+    const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true)
+    const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false)
 
     // Shopping Cart - Order
-    const [order, setOrder] = useState([]);
+    const [order, setOrder] = useState([])
 
     // Get Products
-    const [items, setItems] = useState(null);
+    const [items, setItems] = useState(null)
+    const [filteredItems, setFilteredItems] = useState(null)
+
+    // Search - get products by title
+    const [searchByTitle, setSearchByTitle] = useState(null)
 
     useEffect(() => {
         const getProducts = async () => {
         try {
             const data = await fetch(apiUrlPlatzi)
             const jsonData = await data.json()
-            console.log(jsonData);
             setItems(jsonData)
         } 
         catch (error) {
@@ -48,19 +48,24 @@ export const ShoppingCartProvider = ({ children }) => {
         }}
 
         getProducts()
-    }, []);
+    }, [])
 
-    // Search - get products by title
-    const [searchByTitle, setSearchByTitle] = useState(null);
-    console.log(searchByTitle);
+    const filteredItemsByTitle = (items, searchByTitle) => {
+        return items?.filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
+    }
 
-    const data = {isProductDetailOpen, openProductDetail, closeProductDetail, productToShow, setProductToShow, cartProducts, setCartProducts, isCheckoutSideMenuOpen, openCheckoutSideMenu, closeCheckoutSideMenu, order, setOrder, items, setItems, searchByTitle, setSearchByTitle };
+    useEffect(() => {
+        if (searchByTitle) setFilteredItems(filteredItemsByTitle(items, searchByTitle))
+    }, [items, searchByTitle])
+
+
+    const data = {isProductDetailOpen, openProductDetail, closeProductDetail, productToShow, setProductToShow, cartProducts, setCartProducts, isCheckoutSideMenuOpen, openCheckoutSideMenu, closeCheckoutSideMenu, order, setOrder, items, setItems, searchByTitle, setSearchByTitle, filteredItems, setFilteredItems }
 
     return(
         <ShoppingCartContext.Provider value={ data }>
             { children }
         </ShoppingCartContext.Provider>
-    );
+    )
 }
 
-export const useShoppingCartProvider = () => useContext(ShoppingCartContext);
+export const useShoppingCartProvider = () => useContext(ShoppingCartContext)
