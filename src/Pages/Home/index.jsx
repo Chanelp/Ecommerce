@@ -4,13 +4,11 @@ import ProductDetail from '../../Components/ProductDetail';
 import { useShoppingCartProvider } from '../../Context';
 
 function Home() {
-  const { items, searchByTitle, setSearchByTitle, filteredItems } = useShoppingCartProvider();
+  const { setSearchByTitle, filteredItems } = useShoppingCartProvider();
 
   const renderView = () => {
-    const itemsToRender = searchByTitle?.length > 0 ? filteredItems : items;
-
-    if(itemsToRender?.length > 0){
-      return itemsToRender.map(item => (
+    if(filteredItems?.length > 0){
+      return filteredItems.map(item => (
         <Card key={item.id} data={item} />
         ));
     } else {

@@ -34,7 +34,7 @@ export const ShoppingCartProvider = ({ children }) => {
     const [filteredItems, setFilteredItems] = useState(null)
 
     // Search - get products by title
-    const [searchByTitle, setSearchByTitle] = useState(null)
+    const [searchByTitle, setSearchByTitle] = useState('')
 
     useEffect(() => {
         const getProducts = async () => {
@@ -55,7 +55,11 @@ export const ShoppingCartProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        if (searchByTitle) setFilteredItems(filteredItemsByTitle(items, searchByTitle))
+        if (searchByTitle.length > 0){
+         setFilteredItems(filteredItemsByTitle(items, searchByTitle))
+        } else {
+            setFilteredItems(items);
+        }
     }, [items, searchByTitle])
 
 
