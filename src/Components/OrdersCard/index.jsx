@@ -1,4 +1,4 @@
-import { ShoppingCartIcon, CurrencyDollarIcon, CalendarDaysIcon } from '@heroicons/react/24/outline';
+import { ShoppingCartIcon, CurrencyDollarIcon, CalendarDaysIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 
 const OrdersCard = (props) => {
     const { date, totalPrice, quantityProducts } = props;
@@ -8,7 +8,11 @@ const OrdersCard = (props) => {
             <p className="flex justify-between w-96">
                 <span className='flex justify-center items-center gap-2'><ShoppingCartIcon width="20px" height="20px" /> {quantityProducts} products</span>
                 <span className='flex justify-center items-center gap-2'><CurrencyDollarIcon width="20px" height="20px" /> ${totalPrice}</span>
-                <span className='flex justify-center items-center gap-2'><CalendarDaysIcon width="20px" height="20px" />{date}</span>
+                <span className='flex justify-center items-center gap-2'>
+                    <CalendarDaysIcon width="20px" height="20px" />
+                    {date}
+                    <ChevronRightIcon width="20px" height="20px" />
+                </span>
             </p>
         </div>
     );
