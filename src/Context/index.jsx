@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { apiUrlPlatzi } from '../api';
 
 const ShoppingCartContext = createContext();
 
@@ -31,7 +32,29 @@ export const ShoppingCartProvider = ({ children }) => {
     // Shopping Cart - Order
     const [order, setOrder] = useState([]);
 
-    const data = {isProductDetailOpen, openProductDetail, closeProductDetail, productToShow, setProductToShow, cartProducts, setCartProducts, isCheckoutSideMenuOpen, openCheckoutSideMenu, closeCheckoutSideMenu, order, setOrder };
+    // Get Products
+    const [items, setItems] = useState(null);
+
+    useEffect(() => {
+        const getProducts = async () => {
+        try {
+            const data = await fetch(apiUrlPlatzi)
+            const jsonData = await data.json()
+            console.log(jsonData);
+            setItems(jsonData)
+        } 
+        catch (error) {
+            console.log(error)
+        }}
+
+        getProducts()
+    }, []);
+
+    // Search - get products by title
+    const [searchByTitle, setSearchByTitle] = useState(null);
+    console.log(searchByTitle);
+
+    const data = {isProductDetailOpen, openProductDetail, closeProductDetail, productToShow, setProductToShow, cartProducts, setCartProducts, isCheckoutSideMenuOpen, openCheckoutSideMenu, closeCheckoutSideMenu, order, setOrder, items, setItems, searchByTitle, setSearchByTitle };
 
     return(
         <ShoppingCartContext.Provider value={ data }>
