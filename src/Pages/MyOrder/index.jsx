@@ -6,6 +6,10 @@ import { useShoppingCartProvider } from '../../Context';
 function MyOrder() {
 
   const { order } = useShoppingCartProvider();
+  const currentPath = window.location.pathname;
+  let index = currentPath.substring(currentPath.lastIndexOf("/") + 1);
+
+  if(index === "last") index = order.length - 1;
 
     return (
       <>
@@ -17,7 +21,7 @@ function MyOrder() {
             </div>
         <div className='flex flex-col w-96'>
                 {
-                    order?.slice(-1)[0].products.map(product => (
+                    order?.[index]?.products.map(product => (
                         <OrderCard 
                             key={product.id} 
                             id={product.id}

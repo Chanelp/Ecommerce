@@ -8,14 +8,14 @@ const MyOrders = () => {
 
     return(
         <>
-            { order.map((order, index) => {
-                <Link key={index} to={`/my-orders/${order.id}`}>
+            { order.map((order, index) => (
+                <Link key={index} to={`/my-orders/${index}`}>
                     <OrdersCard
                       totalPrice={order.totalPrice}
                       quantityProducts={order.quantityProducts} 
                       date={order.date}/>
                 </Link>
-            }) }
+            )) }
         </>
     );
 }
