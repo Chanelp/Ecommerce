@@ -44,7 +44,7 @@ function Home() {
     return (
       <>
       <div>
-        <h1 className='font-medium text-xl'>Exclusive Products</h1>
+        <h1 className='font-medium text-xl'>Acquire exclusive products</h1>
       </div>
       <div className="relative my-6 w-80">
         <input className="w-full p-1.5 mb-4 outline-1 outline-red-800 border-2 border-black/50 rounded-lg" 
