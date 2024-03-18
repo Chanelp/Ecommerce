@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import Card from "../../Components/Card";
@@ -5,7 +6,7 @@ import ProductDetail from '../../Components/ProductDetail';
 import { useShoppingCartProvider } from '../../Context';
 
 function Home() {
-  const { items, setSearchByTitle } = useShoppingCartProvider();
+  const { items, searchByTitle, setSearchByTitle, filteredItems } = useShoppingCartProvider();
 
   const [category, setCategory] = useState(null);
 
@@ -23,8 +24,7 @@ function Home() {
   };
 
   const renderView = () => {
-    const itemsToRender = filterByCategory(items, category);
-    console.log(items);
+    const itemsToRender = searchByTitle?.length > 0 ? filteredItems : filterByCategory(items, category);
 
     if(itemsToRender?.length > 0){
       return itemsToRender.map(item => (
