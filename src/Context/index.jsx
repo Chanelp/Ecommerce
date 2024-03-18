@@ -55,7 +55,7 @@ export const ShoppingCartProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        if (searchByTitle.length > 0){
+        if (searchByTitle?.length > 0){
          setFilteredItems(filteredItemsByTitle(items, searchByTitle))
         } else {
             setFilteredItems(items);

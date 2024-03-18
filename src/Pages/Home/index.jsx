@@ -12,6 +12,8 @@ function Home() {
 
   useEffect(() => {
     setCategory(window.location.pathname.slice(1));
+
+    return () => setSearchByTitle(null);
   }, [window.location.pathname]);
 
   const filterByCategory = (items, category) => {
