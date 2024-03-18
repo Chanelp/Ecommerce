@@ -22,13 +22,13 @@ Shopi es una aplicación web de una tienda en línea que te permite explorar una
 1. Clona este repositorio en tu máquina local utilizando Git:
 
 ```
-git clone https://github.com/tu_usuario/shopi.git
+git clone https://github.com/tu_usuario/Ecommerce.git
 ```
 
 2. Navega hasta el directorio del proyecto:
 
 ```
-cd shopi
+cd Ecommerce
 ```
 
 3. Instala las dependencias necesarias utilizando npm:
@@ -43,7 +43,7 @@ npm install
 npm start
 ```
 
-¡Y listo! La aplicación estará disponible en [http://localhost:3000](http://localhost:3000).
+¡Y listo! La aplicación estará disponible en [http://localhost:5173](http://localhost:5173).
 
 ## Contribuir 🤝
 
@@ -51,7 +51,7 @@ Si quieres contribuir a este proyecto, ¡serás bienvenido! Siéntete libre de a
 
 ## Autor ✍️
 
-Shopi ha sido desarrollado por [Tu Nombre](https://github.com/tu_usuario).
+Shopi ha sido desarrollado por [Chanel Paredes](https://github.com/Chanelp).
 
 ## Licencia 📝
 
