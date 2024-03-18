@@ -1,14 +1,33 @@
+import { useEffect, useState } from 'react';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import Card from "../../Components/Card";
 import ProductDetail from '../../Components/ProductDetail';
 import { useShoppingCartProvider } from '../../Context';
 
 function Home() {
-  const { setSearchByTitle, filteredItems } = useShoppingCartProvider();
+  const { items, setSearchByTitle } = useShoppingCartProvider();
+
+  const [category, setCategory] = useState(null);
+
+  useEffect(() => {
+    setCategory(window.location.pathname.slice(1));
+  }, [window.location.pathname]);
+
+  const filterByCategory = (items, category) => {
+    if(category){
+      return items?.filter(item => 
+        item.category.name.toLowerCase() === category.toLowerCase());
+      } else {
+      return items;
+    }
+  };
 
   const renderView = () => {
-    if(filteredItems?.length > 0){
-      return filteredItems.map(item => (
+    const itemsToRender = filterByCategory(items, category);
+    console.log(items);
+
+    if(itemsToRender?.length > 0){
+      return itemsToRender.map(item => (
         <Card key={item.id} data={item} />
         ));
     } else {
